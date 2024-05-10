@@ -1,5 +1,5 @@
 import axios, { AxiosResponse } from "axios";
-import { IRecipe } from "../models/recipe";
+import { IRecipe } from "../models/RecipeModel";
 
 const axiosInstance = axios.create({
   baseURL: "https://dummyjson.com",

@@ -1,9 +1,12 @@
-import Recipes from "./components/recipes/Recipes";
+import UsersComponent from "./components/UsersComponent";
 
 const App = () => {
+  const lift = (user: any) => {
+    console.log(user);
+  };
   return (
     <>
-      <Recipes />
+      <UsersComponent lift={lift} />
     </>
   );
 };

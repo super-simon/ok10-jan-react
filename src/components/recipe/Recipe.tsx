@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { IRecipe } from "../../models/recipe";
+import { IRecipe } from "../../models/RecipeModel";
 
 export type IRecipeTypeProps = IRecipe & { children?: React.ReactNode };
 

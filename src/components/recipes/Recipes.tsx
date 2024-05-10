@@ -1,5 +1,5 @@
 import { FC, useEffect, useState } from "react";
-import { IRecipe } from "../../models/recipe";
+import { IRecipe } from "../../models/RecipeModel";
 import { getAllRecipes } from "../../services/recipes.api.service";
 import Recipe from "../recipe/Recipe";
 
