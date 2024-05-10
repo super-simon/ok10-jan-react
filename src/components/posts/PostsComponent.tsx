@@ -3,7 +3,9 @@ import { PostModel } from "../../models/PostModel";
 import { getAllPosts } from "../../services/jph.api.service";
 import PostComponent from "../post/PostComponent";
 
-const PostsComponent: FC = () => {
+type IPropsProps = { lift?: (postId: number) => void };
+
+const PostsComponent: FC<IPropsProps> = ({ lift }) => {
   const [posts, setPosts] = useState<PostModel[]>([]);
   useEffect(() => {
     getAllPosts().then((res) => setPosts(res.data));
@@ -11,7 +13,7 @@ const PostsComponent: FC = () => {
   return (
     <div>
       {posts.map((post) => (
-        <PostComponent post={post} />
+        <PostComponent key={post.id} post={post} lift={lift} />
       ))}
     </div>
   );

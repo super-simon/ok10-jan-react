@@ -5,15 +5,21 @@ interface IProps {
   post: PostModel;
 }
 
-type IPropTypes = IProps & { children?: React.ReactNode };
+type IPropTypes = IProps & { children?: React.ReactNode } & {
+  lift?: (postId: number) => void;
+};
 
-const PostComponent: FC<IPropTypes> = ({ post }) => {
+const PostComponent: FC<IPropTypes> = ({ post, lift }) => {
+  function onClickHandler(): void {
+    !!lift && lift(post.id);
+  }
+
   return (
     <div>
       {post.id} {post.title}
       <p>{post.body}</p>
       <div>
-        <button>Show Comments</button>
+        <button onClick={onClickHandler}>Show Comments</button>
       </div>
       <hr />
     </div>
