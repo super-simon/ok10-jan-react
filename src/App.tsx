@@ -1,13 +1,13 @@
-import UsersComponent from "./components/UsersComponent";
+import PostsComponent from "./components/posts/PostsComponent";
 
 const App = () => {
-  const lift = (user: any) => {
-    console.log(user);
-  };
   return (
-    <>
-      <UsersComponent lift={lift} />
-    </>
+    <div className="App">
+      <div className="posts">
+        <PostsComponent />
+      </div>
+      <div className="comments"></div>
+    </div>
   );
 };
 
