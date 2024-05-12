@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 const App = () => {
   const [counter, setCounter] = useState<number>(0);
 
-  let [x, setX] = useState(0);
+  const [x, setX] = useState(0);
 
   useEffect(() => {
     setTimeout(() => {
@@ -17,7 +17,7 @@ const App = () => {
       <h2>{counter}</h2>
       <button
         onClick={() => {
-          setX(x++);
+          setX((val) => val + 1);
         }}
       ></button>
     </div>
