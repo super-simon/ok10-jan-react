@@ -1,29 +1,25 @@
-import { useState } from "react";
-
-interface IState {
-  value: number;
-}
+import { useEffect, useState } from "react";
 
 const App = () => {
-  const [counter, setCounter] = useState<IState>({ value: 0 });
+  const [counter, setCounter] = useState<number>(0);
 
-  const reset = () => {
-    setCounter({ value: 0 });
-  };
+  let [x, setX] = useState(0);
 
-  const increment = () => {
-    setCounter((val) => ({ value: val.value + 1 }));
-  };
+  useEffect(() => {
+    setTimeout(() => {
+      setCounter(counter + 1);
+    }, 2000);
+  }, [x]);
 
-  const decrement = () => {
-    setCounter((val) => ({ value: val.value - 1 }));
-  };
+  console.log(".");
   return (
     <div>
-      <h2>{counter.value}</h2>
-      <button onClick={increment}>Increment</button>
-      <button onClick={decrement}>Decrement</button>
-      <button onClick={reset}>Reset</button>
+      <h2>{counter}</h2>
+      <button
+        onClick={() => {
+          setX(x++);
+        }}
+      ></button>
     </div>
   );
 };
