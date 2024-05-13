@@ -15,14 +15,9 @@ const FormComponent: FC = () => {
     e.preventDefault();
   };
 
-  const handleUsernameChange = (e: FormEvent<HTMLInputElement>): void => {
+  const handleChange = (e: FormEvent<HTMLInputElement>): void => {
     const input = e.currentTarget;
-    setFormState({ ...formState, username: input.value });
-  };
-
-  const handlePasswordChange = (e: FormEvent<HTMLInputElement>): void => {
-    const input = e.currentTarget;
-    setFormState({ ...formState, password: input.value });
+    setFormState({ ...formState, [input.name]: input.value });
   };
 
   return (
@@ -32,13 +27,13 @@ const FormComponent: FC = () => {
           type="text"
           name="username"
           value={formState.username}
-          onChange={handleUsernameChange}
+          onChange={handleChange}
         />
         <input
           type="text"
           name="password"
           value={formState.password}
-          onChange={handlePasswordChange}
+          onChange={handleChange}
         />
         <button>save</button>
       </form>
