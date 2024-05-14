@@ -1,37 +1,48 @@
 import { joiResolver } from "@hookform/resolvers/joi";
 import { FC } from "react";
 import { useForm } from "react-hook-form";
-import { userValidator } from "../validators/user.validator";
+import { postValidator } from "../validators/post.validator";
 
-interface IFormProps {
-  username: string;
-  age: number;
-  password: string;
+export interface IPostFormProps {
+  handlePostForm: (data: IPostForm) => void;
 }
 
-const FormComponent: FC = () => {
+export interface IPostForm {
+  userId: number;
+  title: string;
+  body: string;
+}
+
+const FormComponent: FC<IPostFormProps> = ({ handlePostForm }) => {
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<IFormProps>({
+  } = useForm<IPostForm>({
     mode: "all",
-    resolver: joiResolver(userValidator),
+    resolver: joiResolver(postValidator),
   });
 
-  const save = (formValues: IFormProps) => {
-    console.log(formValues);
-  };
   return (
     <div>
-      <form onSubmit={handleSubmit(save)}>
-        <input type="text" {...register("username")} />
-        {errors.username && <span>{errors.username.message}</span>}
+      <h2>New Post</h2>
+      <form onSubmit={handleSubmit(handlePostForm)}>
+        <label>
+          Post Title:
+          <br />
+          <input type="text" {...register("title")} />
+          {errors.title && <span>{errors.title.message}</span>}
+        </label>
         <br />
-        <input type="number" {...register("age")} />
-        {errors.age && <span>{errors.age.message}</span>}
         <br />
-        <input type="text" {...register("password")} />
+        <label>
+          Post Body:
+          <br />
+          <textarea {...register("body")} />
+          {errors.body && <span>{errors.body.message}</span>}
+        </label>
+        <br />
+        <br />
         <button>save</button>
       </form>
     </div>
