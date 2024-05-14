@@ -6,9 +6,13 @@ const App = () => {
   const [x, setX] = useState(0);
 
   useEffect(() => {
-    setTimeout(() => {
+    const id = setInterval(() => {
       setCounter(counter + 1);
     }, 2000);
+    return () => {
+      console.log("...useEffect return cb");
+      clearInterval(id);
+    };
   }, [x]);
 
   console.log(".");
