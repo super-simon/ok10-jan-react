@@ -1,0 +1,21 @@
+.layout {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: space-between;
+}
+
+.layoutHeader {
+  height: 3em;
+  border-bottom: 1px solid grey;
+}
+
+.layoutFooter {
+  height: 3em;
+  border-top: 1px solid grey;
+}
+
+.layoutOutlet {
+  flex: 2;
+  overflow: auto;
+}

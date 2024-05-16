@@ -1,10 +1,5 @@
 const FooterComponent = () => {
-  return (
-    <div>
-      <hr />
-      FooterComponent
-    </div>
-  );
+  return <div>FooterComponent</div>;
 };
 
 export default FooterComponent;

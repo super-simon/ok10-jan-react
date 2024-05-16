@@ -1,4 +1,5 @@
 import { createBrowserRouter } from "react-router-dom";
+import PostsComponent from "../components/PostsComponent";
 import UsersComponent from "../components/UsersComponent";
 import AnotherLayout from "../layout/AnotherLayout";
 import MainLayout from "../layout/MainLayout";
@@ -12,6 +13,7 @@ export const routerConfig = createBrowserRouter([
     children: [
       { path: "", element: <HomePage /> },
       { path: "users", element: <UsersComponent /> },
+      { path: "posts", element: <PostsComponent /> },
     ],
   },
   { path: "/okten", element: <AnotherLayout /> },
