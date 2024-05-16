@@ -1,15 +1,15 @@
 import { useEffect, useState } from "react";
-import { IUserModel } from "../models/UserModel";
-import { userApiSerivce } from "../services/api.service";
+import { IUserModel } from "../../models/UserModel";
+import { userApiSerivce } from "../../services/api.service";
 
 const UsersComponent = () => {
   const [users, setUsers] = useState<IUserModel[]>([]);
   useEffect(() => {
     userApiSerivce.getAllUsers().then((val) => {
-      console.log(val.data);
       setUsers(val.data);
     });
   }, []);
+
   return (
     <div>
       <ul>

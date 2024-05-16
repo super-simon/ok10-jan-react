@@ -1,22 +1,27 @@
 import { useEffect, useState } from "react";
-import { IPostModel } from "../models/PostModel";
-import { userApiSerivce } from "../services/api.service";
+import { Link } from "react-router-dom";
+import { IPostModel } from "../../models/PostModel";
+import { userApiSerivce } from "../../services/api.service";
+import "./PostsComponent.css";
 
 const PostsComponent = () => {
   const [posts, setPosts] = useState<IPostModel[]>([]);
   useEffect(() => {
     userApiSerivce.getAllPosts().then((val) => {
-      console.log(val.data);
       setPosts(val.data);
     });
   }, []);
   return (
     <div>
-      <ul>
+      <ul className="postList">
         {posts.map((post) => (
           <li key={post.id}>
-            <div>{post.title}</div>
+            <h2>{post.title}</h2>
             <div>{post.body}</div>
+            <br />
+            <div>
+              <Link to={`/posts/${post.id}/comments`}>Comments</Link>
+            </div>
           </li>
         ))}
       </ul>

@@ -1,4 +1,5 @@
 import axios, { AxiosResponse } from "axios";
+import { ICommentModel } from "../models/CommentModel";
 import { IPostModel } from "../models/PostModel";
 import { IUserModel } from "../models/UserModel";
 
@@ -8,8 +9,8 @@ const axiosInstance = axios.create({
 });
 
 const userApiSerivce = {
-  getAllUsers: (): Promise<AxiosResponse<IUserModel[]>> => {
-    return axiosInstance.get("/users");
+  getAllUsers: async (): Promise<AxiosResponse<IUserModel[]>> => {
+    return await axiosInstance.get("/users");
   },
 
   getUserByUserId: async (
@@ -18,8 +19,14 @@ const userApiSerivce = {
     return await axiosInstance.get(`/users/${userId}`);
   },
 
-  getAllPosts: (): Promise<AxiosResponse<IPostModel[]>> => {
-    return axiosInstance.get("/posts");
+  getAllPosts: async (): Promise<AxiosResponse<IPostModel[]>> => {
+    return await axiosInstance.get("/posts");
+  },
+
+  getCommentsByPost: async (
+    postId: string
+  ): Promise<AxiosResponse<ICommentModel[]>> => {
+    return await axiosInstance.get(`/posts/${postId}/comments`);
   },
 };
 

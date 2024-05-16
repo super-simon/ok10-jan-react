@@ -1,6 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
-import PostsComponent from "../components/PostsComponent";
-import UsersComponent from "../components/UsersComponent";
+import CommentsByPostComponent from "../components/comments/CommentsByPostComponent";
+import PostsComponent from "../components/posts/PostsComponent";
+import UsersComponent from "../components/users/UsersComponent";
 import AnotherLayout from "../layout/AnotherLayout";
 import MainLayout from "../layout/MainLayout";
 import HomePage from "../pages/HomePage";
@@ -13,6 +14,7 @@ export const routerConfig = createBrowserRouter([
     children: [
       { path: "", element: <HomePage /> },
       { path: "users", element: <UsersComponent /> },
+      { path: "posts/:postId/comments", element: <CommentsByPostComponent /> },
       { path: "posts", element: <PostsComponent /> },
     ],
   },
