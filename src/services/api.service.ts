@@ -1,4 +1,5 @@
 import axios, { AxiosResponse } from "axios";
+import { IPostModel } from "../models/PostModel";
 import { IUserModel } from "../models/UserModel";
 
 const axiosInstance = axios.create({
@@ -7,13 +8,20 @@ const axiosInstance = axios.create({
 });
 
 const userApiSerivce = {
-  getAllUsers: (): Promise<AxiosResponse<IUserModel[]>> => {
+  getAllUsers: async (): Promise<AxiosResponse<IUserModel[]>> => {
     return axiosInstance.get("/users");
   },
+
   getUserByUserId: async (
     userId: number
   ): Promise<AxiosResponse<IUserModel>> => {
     return await axiosInstance.get(`/users/${userId}`);
+  },
+
+  getPostsByUser: async (
+    userId: string
+  ): Promise<AxiosResponse<IPostModel[]>> => {
+    return axiosInstance.get(`/users/${userId}/posts`);
   },
 };
 
