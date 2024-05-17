@@ -1,20 +1,12 @@
-import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { FC } from "react";
 import { ICommentModel } from "../../models/CommentModel";
-import { userApiSerivce } from "../../services/api.service";
 import "./CommentsByPostComponent.css";
 
-const CommentsByPostComponent = () => {
-  const { postId } = useParams();
+interface IProps {
+  comments: ICommentModel[];
+}
 
-  const [comments, setComments] = useState<ICommentModel[]>([]);
-  useEffect(() => {
-    if (postId) {
-      userApiSerivce.getCommentsByPost(postId).then((val) => {
-        setComments(val.data);
-      });
-    }
-  }, [postId]);
+const CommentsByPostComponent: FC<IProps> = ({ comments }) => {
   return (
     <div>
       <ul className="commentList">

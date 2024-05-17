@@ -1,16 +1,14 @@
-import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { FC } from "react";
+import { Link, useParams } from "react-router-dom";
 import { IPostModel } from "../../models/PostModel";
-import { userApiSerivce } from "../../services/api.service";
 import "./PostsComponent.css";
 
-const PostsComponent = () => {
-  const [posts, setPosts] = useState<IPostModel[]>([]);
-  useEffect(() => {
-    userApiSerivce.getAllPosts().then((val) => {
-      setPosts(val.data);
-    });
-  }, []);
+interface IProps {
+  posts: IPostModel[];
+}
+
+const PostsComponent: FC<IProps> = ({ posts }) => {
+  const { userId } = useParams();
   return (
     <div>
       <ul className="postList">
@@ -20,7 +18,7 @@ const PostsComponent = () => {
             <div>{post.body}</div>
             <br />
             <div>
-              <Link to={`/posts/${post.id}/comments`}>Comments</Link>
+              <Link to={`/users/${userId}/${post.id}`}>Comments</Link>
             </div>
           </li>
         ))}

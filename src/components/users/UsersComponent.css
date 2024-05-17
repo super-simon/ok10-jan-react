@@ -1,0 +1,8 @@
+.usersList {
+  list-style-type: none;
+  padding: 0;
+}
+
+.usersList li {
+  padding: 1em 1em 1em 0;
+}

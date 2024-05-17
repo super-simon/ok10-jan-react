@@ -1,0 +1,7 @@
+.usersContainer {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  gap: 2em;
+  padding: 0;
+}

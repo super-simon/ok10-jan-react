@@ -8,7 +8,7 @@ const axiosInstance = axios.create({
   headers: {},
 });
 
-const userApiSerivce = {
+export const apiSerivce = {
   getAllUsers: async (): Promise<AxiosResponse<IUserModel[]>> => {
     return await axiosInstance.get("/users");
   },
@@ -23,11 +23,15 @@ const userApiSerivce = {
     return await axiosInstance.get("/posts");
   },
 
+  getPostsByUser: async (
+    userId: string
+  ): Promise<AxiosResponse<IPostModel[]>> => {
+    return axiosInstance.get(`/users/${userId}/posts`);
+  },
+
   getCommentsByPost: async (
     postId: string
   ): Promise<AxiosResponse<ICommentModel[]>> => {
     return await axiosInstance.get(`/posts/${postId}/comments`);
   },
 };
-
-export { userApiSerivce };

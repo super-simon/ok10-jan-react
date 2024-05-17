@@ -1,10 +1,10 @@
 import { createBrowserRouter } from "react-router-dom";
-import CommentsByPostComponent from "../components/comments/CommentsByPostComponent";
-import PostsComponent from "../components/posts/PostsComponent";
-import UsersComponent from "../components/users/UsersComponent";
 import AnotherLayout from "../layout/AnotherLayout";
 import MainLayout from "../layout/MainLayout";
+import CommentsPage from "../pages/CommentsPage";
 import HomePage from "../pages/HomePage";
+import PostsPage from "../pages/PostsPage";
+import UsersPage from "../pages/UsersPage";
 
 export const routerConfig = createBrowserRouter([
   {
@@ -13,9 +13,22 @@ export const routerConfig = createBrowserRouter([
     errorElement: <h1>Fuck You!</h1>,
     children: [
       { path: "", element: <HomePage /> },
-      { path: "users", element: <UsersComponent /> },
-      { path: "posts/:postId/comments", element: <CommentsByPostComponent /> },
-      { path: "posts", element: <PostsComponent /> },
+      {
+        path: "users",
+        element: <UsersPage />,
+        children: [
+          {
+            path: ":userId",
+            element: <PostsPage />,
+            children: [
+              {
+                path: ":postId",
+                element: <CommentsPage />,
+              },
+            ],
+          },
+        ],
+      },
     ],
   },
   { path: "/okten", element: <AnotherLayout /> },
