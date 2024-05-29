@@ -34,6 +34,7 @@ export const authService = {
     }
     return !!(response?.data?.access && response?.data?.refresh);
   },
+
   refresh: async (refreshToken: string) => {
     const response = await axiosInstance.post<ITokenObtainPair>(
       "/auth/refresh",
@@ -44,13 +45,16 @@ export const authService = {
 
     localStorage.setItem("tokenPair", JSON.stringify(response.data));
   },
+
+  logout: () => {
+    localStorage.removeItem("tokenPair");
+  },
 };
 
 export const carService = {
   getCars: async () => {
     try {
       const response = await axiosInstance.get<ICarPaginatedModel>("/cars");
-      console.log(response.data);
       return response.data;
     } catch (e) {
       const axiosError = e as AxiosError;

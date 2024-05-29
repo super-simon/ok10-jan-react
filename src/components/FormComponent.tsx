@@ -8,22 +8,37 @@ const FormComponent = () => {
     defaultValues: { username: "userSZ1", password: "P@$$word1" },
   });
 
-  const [isAuthState, setIsAuthState] = useState<boolean>(false);
+  const [isAuthState, setIsAuthState] = useState<boolean>(
+    !!localStorage.getItem("tokenPair")
+  );
 
   const authenticate = async (formData: AuthDataModel) => {
     const isAuth = await authService.authentication(formData);
     setIsAuthState(isAuth);
   };
 
+  const handleLogout = () => {
+    authService.logout();
+    setIsAuthState(false);
+  };
+
   return (
     <div>
-      <h3>Login Form</h3>
-      <div>{isAuthState ? <span>ok</span> : <span>not ok</span>}</div>
-      <form onSubmit={handleSubmit(authenticate)}>
-        <input {...register("username")} />
-        <input {...register("password")} />
-        <button>Auth</button>
-      </form>
+      {isAuthState ? (
+        <div>
+          <p>Hello!</p>
+          <button onClick={handleLogout}>Logout</button>
+        </div>
+      ) : (
+        <div>
+          <h3>Login Form</h3>
+          <form onSubmit={handleSubmit(authenticate)}>
+            <input {...register("username")} />
+            <input {...register("password")} />
+            <button>Auth</button>
+          </form>
+        </div>
+      )}
     </div>
   );
 };

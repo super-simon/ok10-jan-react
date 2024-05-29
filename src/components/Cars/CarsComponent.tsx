@@ -11,9 +11,9 @@ const CarsComponent = () => {
       setCars(val?.items || []);
     });
   }, []);
+
   return (
     <div>
-      {" "}
       <ul className="carsList">
         {cars.map((car) => (
           <li key={car.id} className="carsItem">
