@@ -1,17 +1,17 @@
 import { FC } from "react";
-import { ICarPaginatedModel } from "../../models/ICarPaginatedModel";
+import { ICarWithAuthModel } from "../../models/ICarWithAuthModel";
 import CarComponent from "./CarComponent";
 import "./CarsComponent.css";
 
 interface IProps {
-  carsPaginatedObject: ICarPaginatedModel;
+  cars: ICarWithAuthModel[];
 }
 
-const CarsComponent: FC<IProps> = ({ carsPaginatedObject }) => {
+const CarsComponent: FC<IProps> = ({ cars }) => {
   return (
     <div>
       <ul className="carsList">
-        {carsPaginatedObject?.items.map((car) => (
+        {cars.map((car) => (
           <li key={car.id} className="carsItem">
             <CarComponent car={car} />
           </li>

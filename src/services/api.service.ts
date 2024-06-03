@@ -52,9 +52,11 @@ export const authService = {
 };
 
 export const carService = {
-  getCars: async () => {
+  getCars: async (page: string) => {
     try {
-      const response = await axiosInstance.get<ICarPaginatedModel>("/cars");
+      const response = await axiosInstance.get<ICarPaginatedModel>("/cars", {
+        params: { page },
+      });
       return response.data;
     } catch (e) {
       const axiosError = e as AxiosError;
@@ -62,7 +64,7 @@ export const carService = {
         const refreshToken =
           retrieveLocalStorageData<ITokenObtainPair>("tokenPair").refresh;
         await authService.refresh(refreshToken);
-        await carService.getCars();
+        await carService.getCars("1");
       }
     }
   },
