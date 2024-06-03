@@ -12,13 +12,12 @@ const UserPostsComponent = () => {
 
   const userWithPostsArray = useMemo(() => {
     return () => {
-      allUsers.map((user) => {
+      return allUsers.map((user) => {
         const posts = allPosts.filter((post) => post.userId == user.id);
         const newUser = {
           ...user,
           posts,
         };
-
         return newUser;
       });
     };
@@ -32,6 +31,7 @@ const UserPostsComponent = () => {
     <div>
       {usersWithPosts.map((user) => (
         <div key={user.id}>
+          {user.name}
           <ul>
             {user.posts.map((post) => (
               <li key={post.id}>{post.title}</li>

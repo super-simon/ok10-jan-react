@@ -1,10 +1,11 @@
-import { useContextProvider } from "../context/ContextProvider";
+import UserPostsComponent from "../components/UserPostsComponent";
 
 const UserPostsPage = () => {
-  const contextProvider = useContextProvider;
-  console.log("UserPostsPage");
-  console.log(contextProvider());
-  return <div>UserPostsPage</div>;
+  return (
+    <div>
+      <UserPostsComponent />
+    </div>
+  );
 };
 
 export default UserPostsPage;
