@@ -7,9 +7,13 @@ const PostsComponent = () => {
   } = useContextProvider();
   return (
     <div>
-      {allPosts.map((post) => (
-        <PostComponent post={post} />
-      ))}
+      <ul>
+        {allPosts.map((post) => (
+          <li key={post.id}>
+            <PostComponent post={post} />
+          </li>
+        ))}
+      </ul>
     </div>
   );
 };

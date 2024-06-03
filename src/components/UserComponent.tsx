@@ -2,7 +2,11 @@ import { FC } from "react";
 import { useContextProvider } from "../context/ContextProvider";
 import { IUserModel } from "../models/IUserModel";
 
-const UserComponent: FC<{ user: IUserModel }> = ({ user }) => {
+interface IProps {
+  user: IUserModel;
+}
+
+const UserComponent: FC<IProps> = ({ user }) => {
   const {
     usersStore: { setFavoriteUser },
   } = useContextProvider();

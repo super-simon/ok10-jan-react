@@ -8,9 +8,13 @@ const UsersComponent = () => {
 
   return (
     <div>
-      {allUsers.map((user) => (
-        <UserComponent user={user} />
-      ))}
+      <ul>
+        {allUsers.map((user) => (
+          <li key={user.id}>
+            <UserComponent user={user} />
+          </li>
+        ))}
+      </ul>
     </div>
   );
 };

@@ -1,21 +1,21 @@
 import { FC } from "react";
 import { useContextProvider } from "../context/ContextProvider";
-import { IPostModel } from "../models/IPostModel";
+import { ICommentModel } from "../models/ICommentModel";
 
 interface IProps {
-  post: IPostModel;
+  comment: ICommentModel;
 }
 
-const PostComponent: FC<IProps> = ({ post }) => {
+const CommentComponent: FC<IProps> = ({ comment }) => {
   const {
-    postsStore: { setFavoritePost },
+    commentsStore: { setFavoriteComment },
   } = useContextProvider();
   return (
     <div>
-      {post.title}{" "}
+      {comment.body}
       <button
         onClick={() => {
-          setFavoritePost(post);
+          setFavoriteComment(comment);
         }}
       >
         Set as favorite
@@ -24,4 +24,4 @@ const PostComponent: FC<IProps> = ({ post }) => {
   );
 };
 
-export default PostComponent;
+export default CommentComponent;

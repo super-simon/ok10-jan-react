@@ -1,4 +1,5 @@
 import axios, { AxiosResponse } from "axios";
+import { ICommentModel } from "../models/ICommentModel";
 import { IPostModel } from "../models/IPostModel";
 import { IUserModel } from "../models/IUserModel";
 
@@ -7,7 +8,7 @@ const axiosInstance = axios.create({
   headers: {},
 });
 
-const userApiSerivce = {
+const apiSerivce = {
   getAllUsers: async (): Promise<AxiosResponse<IUserModel[]>> => {
     return axiosInstance.get("/users");
   },
@@ -27,6 +28,10 @@ const userApiSerivce = {
   getAllPosts: async (): Promise<AxiosResponse<IPostModel[]>> => {
     return axiosInstance.get(`/posts`);
   },
+
+  getAllComments: async (): Promise<AxiosResponse<ICommentModel[]>> => {
+    return axiosInstance.get(`/comments`);
+  },
 };
 
-export { userApiSerivce };
+export { apiSerivce };

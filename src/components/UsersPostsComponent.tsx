@@ -1,8 +1,10 @@
 import { useEffect, useMemo, useState } from "react";
 import { useContextProvider } from "../context/ContextProvider";
 import { UserWithPostsType } from "../models/UserWithPostsType";
+import PostComponent from "./PostComponent";
+import UserComponent from "./UserComponent";
 
-const UserPostsComponent = () => {
+const UsersPostsComponent = () => {
   const {
     usersStore: { allUsers },
     postsStore: { allPosts },
@@ -10,12 +12,12 @@ const UserPostsComponent = () => {
 
   const [usersWithPosts, setUsersWithPosts] = useState<UserWithPostsType[]>([]);
 
-  const userWithPostsArray = useMemo(() => {
+  const usersWithPostsArray = useMemo(() => {
     return () => {
       return allUsers.map((user) => {
         const posts = allPosts.filter((post) => post.userId == user.id);
         const newUser = {
-          ...user,
+          user,
           posts,
         };
         return newUser;
@@ -24,17 +26,19 @@ const UserPostsComponent = () => {
   }, [allPosts, allUsers]);
 
   useEffect(() => {
-    setUsersWithPosts(userWithPostsArray);
-  }, [userWithPostsArray]);
+    setUsersWithPosts(usersWithPostsArray);
+  }, [usersWithPostsArray]);
 
   return (
     <div>
       {usersWithPosts.map((user) => (
-        <div key={user.id}>
-          {user.name}
+        <div key={user.user.id}>
+          <UserComponent user={user.user} />
           <ul>
             {user.posts.map((post) => (
-              <li key={post.id}>{post.title}</li>
+              <li key={post.id}>
+                <PostComponent post={post} />
+              </li>
             ))}
           </ul>
         </div>
@@ -43,4 +47,4 @@ const UserPostsComponent = () => {
   );
 };
 
-export default UserPostsComponent;
+export default UsersPostsComponent;

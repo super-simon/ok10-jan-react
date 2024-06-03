@@ -1,9 +1,10 @@
 import { Link } from "react-router-dom";
+import "./HeaderComponent.css";
 
 const HeaderComponent = () => {
   return (
-    <div>
-      <ul>
+    <nav>
+      <ul className="menuList">
         <li>
           <Link to="/">Home</Link>
         </li>
@@ -14,10 +15,16 @@ const HeaderComponent = () => {
           <Link to="/posts">Posts</Link>
         </li>
         <li>
-          <Link to="/userPosts">User Posts</Link>
+          <Link to="/comments">Comments</Link>
+        </li>
+        <li>
+          <Link to="/usersPosts">User & Posts</Link>
+        </li>
+        <li>
+          <Link to="/usersPostsComments">User & Posts & Comments</Link>
         </li>
       </ul>
-    </div>
+    </nav>
   );
 };
 

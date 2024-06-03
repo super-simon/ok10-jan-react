@@ -1,7 +1,7 @@
 import { IPostModel } from "./IPostModel";
+import { IUserModel } from "./IUserModel";
 
 export type UserWithPostsType = {
-  id: number;
-  name: string;
+  user: IUserModel;
   posts: IPostModel[];
 };
