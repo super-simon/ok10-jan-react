@@ -1,4 +1,4 @@
-import axios, { AxiosError } from "axios";
+import axios from "axios";
 import { AuthDataModel } from "../models/AuthDataModel";
 import { ICarPaginatedModel } from "../models/ICarPaginatedModel";
 import { ITokenObtainPair } from "../models/ITokenObtainPair";
@@ -25,22 +25,20 @@ axiosInstance.interceptors.request.use((request) => {
 
 export const authService = {
   authentication: async (authData: AuthDataModel): Promise<boolean> => {
-    let response;
-    try {
-      response = await axiosInstance.post<ITokenObtainPair>("/auth", authData);
-      localStorage.setItem("tokenPair", JSON.stringify(response.data));
-    } catch (e) {
-      console.log(e);
-    }
+    const response = await axiosInstance.post<ITokenObtainPair>(
+      "/auth",
+      authData
+    );
+    localStorage.setItem("tokenPair", JSON.stringify(response.data));
     return !!(response?.data?.access && response?.data?.refresh);
   },
 
-  refresh: async (refreshToken: string) => {
+  refresh: async () => {
+    const refreshToken =
+      retrieveLocalStorageData<ITokenObtainPair>("tokenPair").refresh;
     const response = await axiosInstance.post<ITokenObtainPair>(
       "/auth/refresh",
-      {
-        refresh: refreshToken,
-      }
+      { refresh: refreshToken }
     );
 
     localStorage.setItem("tokenPair", JSON.stringify(response.data));
@@ -52,20 +50,10 @@ export const authService = {
 };
 
 export const carService = {
-  getCars: async (page: string) => {
-    try {
-      const response = await axiosInstance.get<ICarPaginatedModel>("/cars", {
-        params: { page },
-      });
-      return response.data;
-    } catch (e) {
-      const axiosError = e as AxiosError;
-      if (axiosError.response?.status === 401) {
-        const refreshToken =
-          retrieveLocalStorageData<ITokenObtainPair>("tokenPair").refresh;
-        await authService.refresh(refreshToken);
-        await carService.getCars("1");
-      }
-    }
+  getCars: async (page: string = "1") => {
+    const response = await axiosInstance.get<ICarPaginatedModel>("/cars", {
+      params: { page },
+    });
+    return response.data;
   },
 };
