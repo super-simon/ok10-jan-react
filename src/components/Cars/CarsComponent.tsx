@@ -1,21 +1,17 @@
-import { useEffect, useState } from "react";
-import { ICarWithAuthModel } from "../../models/ICarWithAuthModel";
-import { carService } from "../../services/api.service";
+import { FC } from "react";
+import { ICarPaginatedModel } from "../../models/ICarPaginatedModel";
 import CarComponent from "./CarComponent";
 import "./CarsComponent.css";
 
-const CarsComponent = () => {
-  const [cars, setCars] = useState<ICarWithAuthModel[]>([]);
-  useEffect(() => {
-    carService.getCars().then((val) => {
-      setCars(val?.items || []);
-    });
-  }, []);
+interface IProps {
+  carsPaginatedObject: ICarPaginatedModel;
+}
 
+const CarsComponent: FC<IProps> = ({ carsPaginatedObject }) => {
   return (
     <div>
       <ul className="carsList">
-        {cars.map((car) => (
+        {carsPaginatedObject?.items.map((car) => (
           <li key={car.id} className="carsItem">
             <CarComponent car={car} />
           </li>
