@@ -3,12 +3,20 @@ import { IPostModel } from "../models/IPostModel";
 import { IUserModel } from "../models/IUserModel";
 
 type StoreType = {
-  usersStore: { allUsers: IUserModel[] };
+  usersStore: {
+    allUsers: IUserModel[];
+    setFavoriteUser: (obj: IUserModel) => void;
+  };
   postsStore: { allPosts: IPostModel[] };
 };
 
 export const defaultValue: StoreType = {
-  usersStore: { allUsers: [] },
+  usersStore: {
+    allUsers: [],
+    setFavoriteUser: (obj: IUserModel) => {
+      console.log(obj);
+    },
+  },
   postsStore: { allPosts: [] },
 };
 export const Context = createContext<StoreType>(defaultValue);
