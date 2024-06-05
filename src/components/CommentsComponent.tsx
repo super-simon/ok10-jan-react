@@ -1,10 +1,10 @@
-import { useContextProvider } from "../context/ContextProvider";
+import { useStore } from "../context/ContextProvider";
 import CommentComponent from "./CommentComponent";
 
 const CommentsComponent = () => {
   const {
     commentsStore: { allComments },
-  } = useContextProvider();
+  } = useStore();
   return (
     <div>
       <ul>

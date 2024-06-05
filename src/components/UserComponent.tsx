@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { useContextProvider } from "../context/ContextProvider";
+import { useStore } from "../context/ContextProvider";
 import { IUserModel } from "../models/IUserModel";
 
 interface IProps {
@@ -9,7 +9,7 @@ interface IProps {
 const UserComponent: FC<IProps> = ({ user }) => {
   const {
     usersStore: { setFavoriteUser },
-  } = useContextProvider();
+  } = useStore();
   return (
     <div>
       {user.name}{" "}

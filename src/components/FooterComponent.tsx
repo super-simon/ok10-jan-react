@@ -1,11 +1,12 @@
-import { useContextProvider } from "../context/ContextProvider";
+import { useStore } from "../context/ContextProvider";
 
 const FooterComponent = () => {
   const {
     usersStore: { favoriteUser },
     postsStore: { favoritePost },
     commentsStore: { favoriteComment },
-  } = useContextProvider();
+  } = useStore();
+
   return (
     <div>
       {favoriteUser && (

@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
-import { useContextProvider } from "../context/ContextProvider";
+import { useStore } from "../context/ContextProvider";
 import { UserWithPostsType } from "../models/UserWithPostsType";
 import PostComponent from "./PostComponent";
 import UserComponent from "./UserComponent";
@@ -8,8 +8,7 @@ const UsersPostsComponent = () => {
   const {
     usersStore: { allUsers },
     postsStore: { allPosts },
-  } = useContextProvider();
-
+  } = useStore();
   const [usersWithPosts, setUsersWithPosts] = useState<UserWithPostsType[]>([]);
 
   const usersWithPostsArray = useMemo(() => {
@@ -28,7 +27,7 @@ const UsersPostsComponent = () => {
   useEffect(() => {
     setUsersWithPosts(usersWithPostsArray);
   }, [usersWithPostsArray]);
-
+  console.log(usersWithPosts);
   return (
     <div>
       {usersWithPosts.map((user) => (

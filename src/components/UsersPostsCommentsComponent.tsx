@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
-import { useContextProvider } from "../context/ContextProvider";
+import { useStore } from "../context/ContextProvider";
 import { UserWithPostsWithCommentsType } from "../models/UserWithPostsWithCommentsType";
 import CommentComponent from "./CommentComponent";
 import PostComponent from "./PostComponent";
@@ -10,7 +10,7 @@ const UsersPostsCommentsComponent = () => {
     usersStore: { allUsers },
     postsStore: { allPosts },
     commentsStore: { allComments },
-  } = useContextProvider();
+  } = useStore();
 
   const [usersWithPostsWithComments, setUsersWithPostsWithComments] = useState<
     UserWithPostsWithCommentsType[]

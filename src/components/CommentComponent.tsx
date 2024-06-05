@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { useContextProvider } from "../context/ContextProvider";
+import { useStore } from "../context/ContextProvider";
 import { ICommentModel } from "../models/ICommentModel";
 
 interface IProps {
@@ -9,7 +9,7 @@ interface IProps {
 const CommentComponent: FC<IProps> = ({ comment }) => {
   const {
     commentsStore: { setFavoriteComment },
-  } = useContextProvider();
+  } = useStore();
   return (
     <div>
       {comment.body}

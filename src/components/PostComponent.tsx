@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { useContextProvider } from "../context/ContextProvider";
+import { useStore } from "../context/ContextProvider";
 import { IPostModel } from "../models/IPostModel";
 
 interface IProps {
@@ -9,7 +9,7 @@ interface IProps {
 const PostComponent: FC<IProps> = ({ post }) => {
   const {
     postsStore: { setFavoritePost },
-  } = useContextProvider();
+  } = useStore();
   return (
     <div>
       {post.title}{" "}
