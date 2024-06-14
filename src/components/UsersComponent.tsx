@@ -5,13 +5,17 @@ const UsersComponent = () => {
   const { users, isLoaded } = useAppSelector((state) => state.userSlice);
   return (
     <div>
-      <ul>
-        {isLoaded ? (
-          users.map((user) => <UserComponent user={user} key={user.id} />)
-        ) : (
-          <h3>Loading...</h3>
-        )}
-      </ul>
+      {isLoaded ? (
+        <ul>
+          {users.map((user) => (
+            <li key={user.id}>
+              <UserComponent user={user} />
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <h3>Loading...</h3>
+      )}
     </div>
   );
 };

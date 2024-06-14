@@ -22,4 +22,9 @@ export const postService = {
     const res = await axiosInstance.get<IPost[]>(urls.posts.base);
     return res.data;
   },
+
+  getById: async (id: string | number): Promise<IPost> => {
+    const res = await axiosInstance.get<IPost>(urls.posts.byId(id));
+    return res.data;
+  },
 };
